@@ -11,12 +11,11 @@
 
     <div class="content__catalog">
       <ProductFilter :price-from.sync="filterPriceFrom" :price-to.sync="filterPriceTo"
-        :category-id.sync="filterCategoryId">
-      </ProductFilter>
+        :category-id.sync="filterCategoryId" :color-id.sync="filterColor" />
 
       <section class="catalog">
-        <ProductList :products="products"></ProductList>
-        <AppPagination v-model="page" :count="countProducts" :per-page="productsPerPage"></AppPagination>
+        <ProductList :products="products" />
+        <AppPagination v-model="page" :count="countProducts" :per-page="productsPerPage" />
       </section>
 
     </div>
@@ -24,10 +23,10 @@
 </template>
 
 <script>
-import products from './data/products';
-import ProductList from './components/ProductList';
-import AppPagination from './components/AppPagination';
-import ProductFilter from './components/ProductFilter';
+import products from '@/data/products';
+import ProductList from '@/components/ProductList';
+import AppPagination from '@/components/AppPagination';
+import ProductFilter from '@/components/ProductFilter';
 
 
 export default {
@@ -39,9 +38,10 @@ export default {
       filterCategoryId: 0,
       filterPriceFrom: 0,
       filterPriceTo: 0,
+      filterColor: 0,
 
       page: 1,
-      productsPerPage: 3,
+      productsPerPage: 6,
     }
   },
   computed: {
@@ -65,6 +65,9 @@ export default {
       };
       if (this.filterCategoryId > 0) {
         filteredProducts = filteredProducts.filter(product => product.categoryId === this.filterCategoryId);
+      };
+      if (this.filterColor > 0) {
+        filteredProducts = filteredProducts.filter(product => product.colors.includes(this.filterColor))
       };
       return filteredProducts;
     },

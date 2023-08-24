@@ -1,7 +1,7 @@
 <template>
     <ul class="catalog__pagination pagination">
         <li class="pagination__item">
-            <button href="#" class="pagination__link pagination__link--arrow"
+            <button href="#" class="pagination__link pagination__link--arrow" :disabled="page === 1"
                 :class="{ 'pagination__link--disabled': page === 1 }" aria-label="Предыдущая страница"
                 @click.prevent="prevPage()">
 
@@ -17,7 +17,7 @@
             </a>
         </li>
         <li class="pagination__item">
-            <button href="#" class="pagination__link pagination__link--arrow"
+            <button href="#" class="pagination__link pagination__link--arrow" :disabled="page === pages"
                 :class="{ 'pagination__link--disabled': page === pages }" aria-label="Следующая страница"
                 @click.prevent="nextPage()">
 
