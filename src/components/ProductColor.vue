@@ -20,6 +20,7 @@ export default {
             type: Array,
             default: []
         },
+
     },
     //первый цвет по умолчанию
     data() {
